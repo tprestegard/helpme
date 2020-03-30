@@ -1,3 +1,5 @@
+import textwrap
+
 from ..utils import CommandGroup, SubCommand
 
 
@@ -21,7 +23,10 @@ class GpgSubCommand(SubCommand):
 ###############################################################################
 # List secret keys in a format for setting Git settings
 GpgSubCommand(
-    "gpg --list-secret-keys --keyid-format LONG",
+    textwrap.dedent("""
+        gpg --list-secret-keys --keyid-format LONG
+        # Use value after rsa****/ on line starting with "sec"
+    """),
     name="show-keys-for-git",
     help="List secret keys in a format usable for Git settings",
 )
