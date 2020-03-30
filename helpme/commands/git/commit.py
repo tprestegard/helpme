@@ -1,5 +1,3 @@
-import click
-import os
 import textwrap
 
 from ...utils import CommandGroup, SubCommand
@@ -50,8 +48,8 @@ CommitSubCommand(
 
 # Set commit date when committing
 CommitSubCommand(
-    'GIT_COMMITTER_DATE="Tue Dec 12 2017 09:01:14 -0600" git commit ' \
-        '-m "message"',
+    'GIT_COMMITTER_DATE="Tue Dec 12 2017 09:01:14 -0600" git commit '
+    '-m "message"',
     name="set-commit-date",
     help="Set commit date when creating a commit",
 )
@@ -61,4 +59,39 @@ CommitSubCommand(
     "git commit -m 'message' --author='Name <email>'",
     name="set-author",
     help="Set the author when creating a commit",
+)
+
+# View author and commit dates
+CommitSubCommand(
+    "git log --format=fuller",
+    name="view-author-and-commit-dates",
+    help="View author and commit dates",
+)
+
+# Find commit where a file was first added
+CommitSubCommand(
+    "git log --diff-filter=A -- <filename>",
+    name="find-commit-that-adds-file",
+    help="Find commit where a file was first added",
+)
+
+# See all commits for a specific file
+CommitSubCommand(
+    "git log --follow <filename>",
+    name="see-all-commits-for-file",
+    help="See all commits where a specific file was modified",
+)
+
+# View file at a specific commit
+CommitSubCommand(
+    "git show <commit-or-tag>:<filename>",
+    name="view-file-at-revision",
+    help="View file at a specific revision (commit, tag, branch, etc.)",
+)
+
+# Edit chunks of cached changes
+CommitSubCommand(
+    "git reset -p",
+    name="edit-cached-chunks",
+    help="Edit chunks of cached changes",
 )
