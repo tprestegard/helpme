@@ -22,9 +22,10 @@ class RsyncSubCommand(SubCommand):
 # Rsync to AWS
 RsyncSubCommand(
     "# NOTE: set up SSH keys and configure sshd first\n"
-    "rsync -av --delete -e \"ssh -i /home/tanner/univa/navops-launch/demo/"
-    "aws/.ssh/navops-launch-demo-tanner.pem\" . root@ec2-34-213-178-76."
-    "us-west-2.compute.amazonaws.com:/root/image_builder/",
+    "env SSH_AUTH_SOCK=\"\" rsync -av --delete -e \"ssh -i "
+    "/home/tanner/univa/navops-launch/demo/aws/.ssh/navops-launch-demo-tanner"
+    ".pem\" . root@ec2-34-213-178-76.us-west-2.compute.amazonaws.com:"
+    "/root/image_builder/",
     name="aws",
     help="Rsync folder to AWS for development",
 )
