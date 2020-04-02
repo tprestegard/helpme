@@ -5,18 +5,8 @@ import pkgutil
 from typing import List
 
 
-class PrintCommand(click.Command):
-    """Click command that just prints a message"""
-    def __init__(self, msg: str, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.msg = msg.strip()
-
-    def invoke(self, ctx):
-        for line in self.msg.split('\n'):
-            click.secho(line)
-
-
 class RegisteredCommandMixin:
+    """Mixin which registers a command or group with a parent group"""
     def __init__(self, parent: click.Group, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._register(parent)
@@ -26,6 +16,7 @@ class RegisteredCommandMixin:
 
 
 class RegisterSubCommandsMixin:
+    """Mixin which registers subcommands or subgroups in a given module"""
     def __init__(self, *args, module: str = None, **kwargs):
         super().__init__(*args, **kwargs)
         if module:
@@ -52,21 +43,7 @@ class RegisterSubCommandsMixin:
 
 
 class AliasMixin:
+    """Mixin which saves a list of strings representing command aliases"""
     def __init__(self, *args, aliases: List[str] = [], **kwargs):
         self.aliases = aliases
         super().__init__(*args, **kwargs)
-
-
-class CommandGroup(RegisterSubCommandsMixin, AliasMixin, click.Group):
-    pass
-
-
-class SubCommand(RegisteredCommandMixin, AliasMixin, PrintCommand):
-    pass
-
-
-def get_module(current_module: str, relative_module_path: str = None) -> str:
-    module_str = current_module.rsplit('.', 1)[0]
-    if relative_module_path:
-        module_str += f".{relative_module_path}"
-    return module_str

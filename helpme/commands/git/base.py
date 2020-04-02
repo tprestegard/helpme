@@ -1,6 +1,6 @@
 import textwrap
 
-from ...utils import CommandGroup, SubCommand, get_module
+from ...core import CommandGroup, SubCommand, get_module
 
 
 ###############################################################################

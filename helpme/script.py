@@ -1,4 +1,4 @@
-from .utils import CommandGroup, get_module
+from .core import CommandGroup, get_module
 
 
 # Main command

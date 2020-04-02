@@ -1,4 +1,4 @@
-from ...utils import CommandGroup, SubCommand
+from ...core import CommandGroup, SubCommand
 
 
 ###############################################################################
