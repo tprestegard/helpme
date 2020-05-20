@@ -17,6 +17,8 @@ def parse_version(path):
 # Classifiers
 CLASSIFIERS = [
     'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
     ('License :: OSI Approved :: GNU General Public License v3 or later '
         '(GPLv3+)'),
     'Operating System :: POSIX',
@@ -35,7 +37,8 @@ setup(
     version=parse_version(os.path.join('helpme', 'version.py')),
     author=("Tanner Prestegard"),
     author_email="tprestegard@gmail.com",
-    description="A Python package for accessing the GraceDB API.",
+    description=("A command-line client for helping you remember various "
+                 "useful commands, methods, etc."),
     license='GPL-3.0-or-later',
     packages=find_packages(),
     classifiers=CLASSIFIERS,
